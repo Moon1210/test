@@ -5,16 +5,25 @@ print("구구단 출력 프로그램")
 wrong_answers = {}
 scores = {}
 
-difficulty = int(input("난이도를 선택하세요 (1-3): "))
-if difficulty == 1:
-    start_dan, end_dan = 2, 6
-elif difficulty == 2:
-    start_dan, end_dan = 2, 8
-else:
-    start_dan, end_dan = 2, 10
-
 name = input("이름을 입력하세요:")
-print(f"{name}님, 구구단 문제를 풀어주셔서 감사합니다!")
+print(f"{name}님, 구구단 마스터가 되어볼까요?")
+
+difficulty_level = input("난이도를 선택하세요 (쉬움/보통/어려움): ")
+
+if difficulty_level == "쉬움":
+    num_range = (2, 9)
+    time_limit = 10
+elif difficulty_level == "보통":
+    num_range = (2, 9)
+    time_limit = 7
+elif difficulty_level == "어려움":
+    num_range = (2, 12)
+    time_limit = 5
+else:
+    print("올바른 난이도를 선택해주세요.")
+    exit()
+
+print(f"{name}님, {difficulty_level} 모드를 선택하셨습니다.")
 
 for i in range(start_dan, end_dan+1):
     print(f"{i}단")
@@ -26,6 +35,10 @@ def ask_multiplication(a, b):
         user_answer = int(input(f"{a} x {b} = "))
     except ValueError:
         print("숫자만 입력해주세요.")
+        return None
+    elapsed_time = time.time() - start_time
+    if elapsed_time > time_limit:
+        print(f"시간 초과! 정답은 {a * b}입니다.")
         return None
     return user_answer
 
