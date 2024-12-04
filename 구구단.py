@@ -25,33 +25,31 @@ else:
 
 print(f"{name}님, {difficulty_level} 모드를 선택하셨습니다.")
 
-for i in range(start_dan, end_dan+1):
-    print(f"{i}단")
-    score = 0
-    check_interval = 10 #10문제마다 실력 점검
-
 def ask_multiplication(a, b):
+    start_time = time.time()
     try:
         user_answer = int(input(f"{a} x {b} = "))
+        elapsed_time = time.time() - start_time
+        if elapsed_time > time_limit:
+            print(f"시간 초과! 정답은 {a * b}입니다.")
+            return None
+        return user_answer
     except ValueError:
         print("숫자만 입력해주세요.")
         return None
-    elapsed_time = time.time() - start_time
-    if elapsed_time > time_limit:
-        print(f"시간 초과! 정답은 {a * b}입니다.")
-        return None
-    return user_answer
 
+    score = 0
     while True:
-        a = random.randint(2, 9)
-        b = random.randint(1, 9)
+        a = random.randint(num_range[0], num_range[1])
+        b = random.randint(num_range[0], num_range[1])
         correct_answer = a * b
-        if answer == correct_answer:
+        user_answer = ask_multiplication(a, b)
+        if user_answer == correct_answer:
             print("정답입니다!")
             score += 1
-            if score % check_interval == 0:
+            if score % 10 == 0:
                  print(f"{name}님, 지금까지 {score}문제를 맞추셨습니다. 멋집니다!")
-                 if score >= 20:
+                 if score >= 30:
                      print("구구단 실력이 점점 늘어나고 있어요. 계속 열심히 하세요!")
         else:
             print(f"아쉽네요. 정답은 {correct_answer}입니다.")
@@ -59,7 +57,7 @@ def ask_multiplication(a, b):
                 wrong_answers[a].append((b, correct_answer))
             else:
                 wrong_answers[a] = [(b, correct_answer)]
-                if score == 30:
+                if score == 50:
                     print(f"{name}님, 구구단 마스타가 되셨습니다! 축하드립니다.")
                     break
                 scores[i] = score
