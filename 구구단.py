@@ -1,8 +1,17 @@
 import time
+import random
 
 print("구구단 출력 프로그램")
 wrong_answers = {}
 scores = {}
+
+difficulty = int(input("난이도를 선택하세요 (1-3): "))
+if difficulty == 1:
+    start_dan, end_dan = 2, 6
+elif difficulty == 2:
+    start_dan, end_dan = 2, 8
+else:
+    start_dan, end_dan = 2, 10
 
 for i in range(2, 10):
     print(f"{i}단")
