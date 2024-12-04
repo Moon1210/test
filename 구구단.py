@@ -45,10 +45,14 @@ for i in range(start_dan, end_dan+1):
                 print()
 
 print("오답노트:")
-for num, mistakes in wrong_answers.items():
-    print(f"{num}단 오답노트:")
-    for mistake in mistakes:
-        print(f"{mistake[0]} x {num} = {mistake[1]}")
+print("오답노트:")
+for i in range(start_dan, end_dan+1):
+    if i in wrong_answers:
+        print(f"{i}단 오답노트:")
+        for a, b, correct_answer in wrong_answers[i]:
+            print(f"{a} x {b} = {correct_answer}")
+    else:
+        print(f"{i}단 오답노트: 없음")
     print()
 
 print("구구단 점수 랭킹:")
