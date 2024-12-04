@@ -19,8 +19,7 @@ print(f"{name}님, 구구단 문제를 풀어주셔서 감사합니다!")
 for i in range(start_dan, end_dan+1):
     print(f"{i}단")
     score = 0
-    start_time = time.time()
-    for j in range(1, 10):
+    while True:
         a = random.randint(2, 9)
         b = random.randint(1, 9)
         correct_answer = a * b
@@ -32,14 +31,18 @@ for i in range(start_dan, end_dan+1):
         if answer == correct_answer:
             print("정답입니다!")
             score += 1
+            if score % 5 == 0 and start_dan < 10:
+                start_dan += 1
+                end_dan += 1
+            print(f"점수가 {score}점이 되었습니다. 난이도가 상승합니다.")
         else:
             print(f"아쉽네요. 정답은 {correct_answer}입니다.")
-            if i in wrong_answers:
-                wrong_answers[i].append((j, correct_answer))
+            if a in wrong_answers:
+                wrong_answers[a].append((b, correct_answer))
             else:
-                wrong_answers[i] = [(j, correct_answer)]
-                if time.time() - start_time > 10:
-                    print("시간 초과! 다음 문제로 넘어갑니다.")
+                wrong_answers[a] = [(b, correct_answer)]
+                if score == 30:
+                    print(f"{name}님, 구구단 마스타가 되셨습니다! 축하드립니다.")
                     break
                 scores[i] = score
                 print()
