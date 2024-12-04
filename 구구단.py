@@ -1,3 +1,5 @@
+import time
+
 print("구구단 출력 프로그램")
 wrong_answers = {}
 scores = {}
@@ -5,6 +7,7 @@ scores = {}
 for i in range(2, 10):
     print(f"{i}단")
     score = 0
+    start_time = time.time()
     for j in range(1, 10):
         answer = int(input(f"{i} x {j} = "))
         correct_answer = i * j
@@ -17,8 +20,11 @@ for i in range(2, 10):
                 wrong_answers[i].append((j, correct_answer))
             else:
                 wrong_answers[i] = [(j, correct_answer)]
-    scores[i] = score
-    print()
+                if time.time() - start_time > 10:
+                    print("시간 초과! 다음 문제로 넘어갑니다.")
+                    break
+                scores[i] = score
+                print()
 
 print("오답노트:")
 for num, mistakes in wrong_answers.items():
