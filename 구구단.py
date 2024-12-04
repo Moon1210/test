@@ -19,6 +19,7 @@ print(f"{name}님, 구구단 문제를 풀어주셔서 감사합니다!")
 for i in range(start_dan, end_dan+1):
     print(f"{i}단")
     score = 0
+    check_interval = 10 #10문제마다 실력 점검
     while True:
         a = random.randint(2, 9)
         b = random.randint(1, 9)
@@ -31,10 +32,10 @@ for i in range(start_dan, end_dan+1):
         if answer == correct_answer:
             print("정답입니다!")
             score += 1
-            if score % 5 == 0 and start_dan < 10:
-                start_dan += 1
-                end_dan += 1
-            print(f"점수가 {score}점이 되었습니다. 난이도가 상승합니다.")
+            if score % check_interval == 0:
+                 print(f"{name}님, 지금까지 {score}문제를 맞추셨습니다. 멋집니다!")
+                 if score >= 20:
+                     print("구구단 실력이 점점 늘어나고 있어요. 계속 열심히 하세요!")
         else:
             print(f"아쉽네요. 정답은 {correct_answer}입니다.")
             if a in wrong_answers:
