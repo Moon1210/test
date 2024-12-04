@@ -45,7 +45,6 @@ for i in range(start_dan, end_dan+1):
                 print()
 
 print("오답노트:")
-print("오답노트:")
 for i in range(start_dan, end_dan+1):
     if i in wrong_answers:
         print(f"{i}단 오답노트:")
