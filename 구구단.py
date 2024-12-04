@@ -58,3 +58,21 @@ print("구구단 점수 랭킹:")
 sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
 for rank, (num, score) in enumerate(sorted_scores, start=1):
     print(f"{rank}위: {num}단 - {score}점")
+
+print("오답노트에 남은 문제를 다시 풀어보세요.")
+
+while len(wrong_answers) > 0:
+    dan = random.choice(list(wrong_answers.keys()))
+    a, b, correct_answer = random.choice(wrong_answers[dan])
+    try:
+        user_answer = int(input(f"{a} x {b} = "))
+    except ValueError:
+        print("숫자만 입력해주세요.")
+        continue
+    if user_answer == correct_answer:
+        print("정답입니다! 오답노트에서 삭제합니다.")
+        wrong_answers[dan].remove((a, b, correct_answer))
+        if not wrong_answers[dan]:
+            del wrong_answers[dan]
+    else:
+        print(f"아쉽네요. 정답은 {correct_answer}입니다.")
