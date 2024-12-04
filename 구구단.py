@@ -13,13 +13,19 @@ elif difficulty == 2:
 else:
     start_dan, end_dan = 2, 10
 
-for i in range(2, 10):
+for i in range(start_dan, end_dan+1):
     print(f"{i}단")
     score = 0
     start_time = time.time()
     for j in range(1, 10):
-        answer = int(input(f"{i} x {j} = "))
-        correct_answer = i * j
+        a = random.randint(2, 9)
+        b = random.randint(1, 9)
+        correct_answer = a * b
+        try:
+            answer = int(input(f"{a} x {b} ="))
+        except ValueError:
+            print("숫자만 입력해주세요.")
+            continue
         if answer == correct_answer:
             print("정답입니다!")
             score += 1
