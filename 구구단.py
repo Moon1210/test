@@ -20,15 +20,19 @@ for i in range(start_dan, end_dan+1):
     print(f"{i}단")
     score = 0
     check_interval = 10 #10문제마다 실력 점검
+
+def ask_multiplication(a, b):
+    try:
+        user_answer = int(input(f"{a} x {b} = "))
+    except ValueError:
+        print("숫자만 입력해주세요.")
+        return None
+    return user_answer
+
     while True:
         a = random.randint(2, 9)
         b = random.randint(1, 9)
         correct_answer = a * b
-        try:
-            answer = int(input(f"{a} x {b} ="))
-        except ValueError:
-            print("숫자만 입력해주세요.")
-            continue
         if answer == correct_answer:
             print("정답입니다!")
             score += 1
