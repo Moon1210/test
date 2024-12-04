@@ -65,6 +65,7 @@ def ask_multiplication(a, b):
                 scores[i] = score
                 print()
 
+print("구구단 프로그램을 모두 완료하셨습니다.")
 print("오답노트:")
 for i in range(start_dan, end_dan+1):
     if i in wrong_answers:
@@ -97,3 +98,5 @@ while len(wrong_answers) > 0:
             del wrong_answers[dan]
     else:
         print(f"아쉽네요. 정답은 {correct_answer}입니다.")
+
+print("구구단 프로그램을 이용해주셔서 감사합니다.")
